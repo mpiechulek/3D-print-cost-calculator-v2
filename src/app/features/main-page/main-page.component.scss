@@ -1,9 +1,12 @@
 :host {
-    display: block;                                                        
-    margin-right: auto;
-    margin-left: auto;
-    max-width: 1200px;
-    padding:20px;
-    height: 100%;
-    background-color: beige;
-}       
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1200px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  main {
+    flex:1
+  }
+}

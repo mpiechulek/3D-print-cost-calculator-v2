@@ -1,0 +1,127 @@
+<form class="px-4 py-3">
+  <div class="mb-3">
+    <label for="printName" class="form-label">Print/Model name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="printName"
+      placeholder="My 3D Print"
+    />
+  </div>
+
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="mb-3">
+        <label for="exampleDropdownFormtext1" class="form-label"
+          >Type/Name of material</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="exampleDropdownFormtext1"
+          placeholder="PLA"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleDropdownFormtext1" class="form-label"
+          >Material price for 1000g</label
+        >
+        <input
+          type="nuber"
+          class="form-control"
+          id="exampleDropdownFormtext1"
+          placeholder="29.99"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleDropdownFormtext1" class="form-label"
+          >Filament spool weight [g]</label
+        >
+        <input
+          type="number"
+          class="form-control"
+          id="exampleDropdownFormtext1"
+          placeholder="0"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleDropdownFormtext1" class="form-label"
+          >3D print model weight [g]</label
+        >
+        <input
+          type="nuber"
+          class="form-control"
+          id="exampleDropdownFormtext1"
+          placeholder="0"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col">
+          <label for="powerConsumption" class="form-label"
+            >Power consumption [KWh]</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="powerConsumption"
+            placeholder="100"
+          />
+        </div>
+        <div class="col">
+          <label for="kwhCost" class="form-label">1KWh cost</label>
+          <input
+            type="number"
+            class="form-control"
+            id="kwhCost"
+            placeholder="100"
+          />
+        </div>
+        <div class="col">
+          <label for="currency" class="form-label">Currency</label>
+          <input
+            type="text"
+            class="form-control"
+            id="currency"
+            placeholder="USD"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col">
+          <label for="exampleDropdownFormtext1" class="form-label"
+            >Printing time [hh]</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="currency"
+            placeholder="2"
+          />
+        </div>
+        <div class="col">
+          <label for="exampleDropdownFormtext1" class="form-label"
+            >Printing time [mm]</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="currency"
+            placeholder="45"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Calculate</button>
+  <button type="submit" class="btn btn-danger">Clear</button>
+</form>
