@@ -1,65 +1,71 @@
-<form class="px-4 py-3">
+<form
+  class="px-4 py-3 mb-5"
+  [formGroup]="calculationForm"
+  (ngSubmit)="onSubmit()"
+>
   <div class="mb-3">
     <label for="printName" class="form-label">Print/Model name</label>
-    <input
-      type="text"
-      class="form-control"
-      id="printName"
-      placeholder="My 3D Print"
-    />
+    <input type="text" class="form-control" name="printName" formControlName="printName" />
   </div>
+
+  <div class="mb-3">
+    <label for="currency" class="form-label">Currency</label>
+    <input type="text" class="form-control" name="currency" formControlName="currency" />
+  </div>
+
+  <!-- Material cost -->
 
   <div class="card mb-3">
     <div class="card-body">
       <div class="mb-3">
-        <label for="exampleDropdownFormtext1" class="form-label"
+        <label for="materialName" class="form-label"
           >Type/Name of material</label
         >
-        <input
-          type="text"
-          class="form-control"
-          id="exampleDropdownFormtext1"
-          placeholder="PLA"
-        />
+        <input type="text" class="form-control" name="materialName" formControlName="materialName" />
       </div>
 
       <div class="mb-3">
-        <label for="exampleDropdownFormtext1" class="form-label"
+        <label for="materialPrice" class="form-label"
           >Material price for 1000g</label
         >
         <input
-          type="nuber"
+          type="number"
           class="form-control"
-          id="exampleDropdownFormtext1"
-          placeholder="29.99"
+          name="materialPrice"
+          min="0"
+          formControlName="materialPrice"
         />
       </div>
 
       <div class="mb-3">
-        <label for="exampleDropdownFormtext1" class="form-label"
+        <label for="materialWeight" class="form-label"
           >Filament spool weight [g]</label
         >
         <input
           type="number"
           class="form-control"
-          id="exampleDropdownFormtext1"
-          placeholder="0"
+          name="materialWeight"
+          min="0"
+          formControlName="materialWeight"
         />
       </div>
 
       <div class="mb-3">
-        <label for="exampleDropdownFormtext1" class="form-label"
+        <label for="printWeight" class="form-label"
           >3D print model weight [g]</label
         >
         <input
-          type="nuber"
+          type="number"
           class="form-control"
-          id="exampleDropdownFormtext1"
-          placeholder="0"
+          name="printWeight"
+          min="0"
+          formControlName="printWeight"
         />
       </div>
     </div>
   </div>
+
+  <!-- Electricity cost -->
 
   <div class="card mb-3">
     <div class="card-body">
@@ -71,57 +77,75 @@
           <input
             type="number"
             class="form-control"
-            id="powerConsumption"
-            placeholder="100"
+            name="powerConsumption"
+            min="0"
+            formControlName="powerConsumption"
           />
         </div>
+
         <div class="col">
-          <label for="kwhCost" class="form-label">1KWh cost</label>
-          <input
-            type="number"
-            class="form-control"
-            id="kwhCost"
-            placeholder="100"
-          />
-        </div>
-        <div class="col">
-          <label for="currency" class="form-label">Currency</label>
-          <input
-            type="text"
-            class="form-control"
-            id="currency"
-            placeholder="USD"
-          />
+          <label for="kwhCost" class="form-label">Cost od 1KWh</label>
+          <input type="number" class="form-control" name="kwhCost" min="0"  formControlName="kwhCost"/>
         </div>
       </div>
 
       <div class="row mb-3">
         <div class="col">
-          <label for="exampleDropdownFormtext1" class="form-label"
-            >Printing time [hh]</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            id="currency"
-            placeholder="2"
-          />
+          <label for="printTimeH" class="form-label">Printing time [hh]</label>
+          <input type="number" class="form-control" name="printTimeH" min="0" formControlName="printTimeH" />
         </div>
         <div class="col">
-          <label for="exampleDropdownFormtext1" class="form-label"
-            >Printing time [mm]</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            id="currency"
-            placeholder="45"
-          />
+          <label for="printTimeM" class="form-label">Printing time [mm]</label>
+          <input type="number" class="form-control" name="printTimeM" min="0" formControlName="printTimeM"/>
         </div>
       </div>
     </div>
   </div>
 
-  <button type="submit" class="btn btn-primary">Calculate</button>
-  <button type="submit" class="btn btn-danger">Clear</button>
+  <!-- Labor cost -->
+
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col">
+          <label for="laborHourCost" class="form-label">Labor hour cost</label>
+          <input
+            type="number"
+            class="form-control"
+            name="laborHourCost"
+            min="0"
+            formControlName="laborHourCost"
+          />
+        </div>
+        <div class="col">
+          <label for="laborHours" class="form-label">Labor hours</label>
+          <input type="number" class="form-control" name="laborHours" min="0" formControlName="laborHours"/>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="machineDepreciation" class="form-label"
+          >Machine Depreciation [per print/1h work]</label
+        >
+        <input
+          type="number"
+          class="form-control"
+          name="machineDepreciation"
+          min="0"
+          formControlName="machineDepreciation"
+        />
+      </div>
+    </div>
+  </div>
+
+  <button
+    type="submit"
+    class="btn btn-primary btn-margin-right"
+    [disabled]="!calculationForm.valid"
+  >
+    Calculate
+  </button>
+
+  <button type="submit" class="btn btn-danger" (click)="onClearForm()">
+    Clear
+  </button>
 </form>

@@ -11,7 +11,7 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <app-caclulation-form />
+      <app-caclulation-form [userFormSetting] = "userFormSetting()" (currenUserFormSetting)="onCalculate($event)"/>
     </div>
     <div class="col-md-6">
       <app-calculations-display-box />
