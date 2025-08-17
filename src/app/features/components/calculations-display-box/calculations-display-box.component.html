@@ -1,36 +1,43 @@
 <div class="d-flex mb-3 space-between">
-    <button type="button" class="btn btn-success btn-margin-right">Export to excell</button>
-  <button type="submit" class="btn btn-danger">Clear</button>
+  <button type="button" class="btn btn-success btn-margin-right">
+    Export to excell
+  </button>
+  <button type="submit" class="btn btn-danger" (click)="clearList.emit()">Clear</button>
 </div>
 
-<div>
+<div class="display-list">
+  @for(print of printList(); track print.printDate) { @let currency=
+  print.setting.currency;
   <div class="card border-gray mb-3">
-    <div class="card-header">3D Print name</div>
+    <div class="card-header">{{ print.setting.printName }}</div>
     <div class="card-body">
       <ul>
         <li>
           <div>Material:</div>
-          1.00$
+          {{ print.materialCost }} {{ currency }}
         </li>
         <li>
           <div>Electricity:</div>
-          0.30$
+          {{ print.electrictyCost }} {{ currency }}
         </li>
         <li>
           <div>Labor:</div>
-          2.00$
+          {{ print.laborCost }} {{ currency }}
         </li>
         <li>
           <div>Depreciation:</div>
-          0.70$
+          {{ print.depreciationCost }} {{ currency }}
         </li>
-     
+
         <li>
           <div><b> Total:</b></div>
-          <b> 4.00$</b>
+          <b> {{ print.totalCost }} {{ currency }}</b>
         </li>
       </ul>
     </div>
-    <div class="card-footer bg-transparent">PLA - Sunlu</div>
+    <div class="card-footer bg-transparent">
+      {{ print.setting.materialName }}
+    </div>
   </div>
+  }
 </div>

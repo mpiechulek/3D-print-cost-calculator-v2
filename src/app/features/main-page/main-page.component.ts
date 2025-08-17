@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { FooterComponent } from '../components/footer/footer.component';
 import { CaclulationFormComponent } from '../components/caclulation-form/caclulation-form.component';
 import { CalculationsDisplayBoxComponent } from '../components/calculations-display-box/calculations-display-box.component';
@@ -10,6 +10,8 @@ import {
   UserPrint,
 } from 'app/shared/models/storage-data.model';
 import { defaultFormData } from 'app/shared/data/default-form-data';
+import { CalculationService } from 'app/shared/services/calculation.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
@@ -19,42 +21,59 @@ import { defaultFormData } from 'app/shared/data/default-form-data';
     HeaderComponent,
     CaclulationFormComponent,
     CalculationsDisplayBoxComponent,
+    CommonModule,
   ],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent {
   storageService = inject(StorageService);
+  calculationService = inject(CalculationService);
   readonly storageKeys = StorageKeys;
   protected printList = signal<UserPrint[]>([]);
   protected userFormSetting = signal<UserFormSettings>(defaultFormData);
 
-  ngOnInit(): void {
+  constructor() {
     this.storageService.setKeysInLocalStorage();
+    this.updateData();
+  }
 
+  /**
+   *
+   * @param userFormSettings
+   */
+  onCalculate(userFormSettings: UserFormSettings): void {
+    this.storageService.setItem(
+      this.storageKeys.USER_SETTINGS_KEY,
+      userFormSettings
+    );
+    this.storageService.updatePrintList(
+      this.calculationService.calculateCost(userFormSettings)
+    );
+
+    this.updateData();
+  }
+
+  /**
+   * Updates the print list and user form settings from local storage.
+   */
+  updateData(): void {
     const userSettings = this.storageService.getItem<UserFormSettings>(
       this.storageKeys.USER_SETTINGS_KEY
     );
     const printList = this.storageService.getItem<UserPrint[]>(
       this.storageKeys.USER_PRINT_LIST_KEY
     );
+
     if (printList) this.printList.set(printList);
     if (userSettings) this.userFormSetting.set(userSettings);
   }
 
   /**
-   * 
-   * @param userFormSettings 
+   *
    */
-  onCalculate(userFormSettings: UserFormSettings): void {   
-    this.storageService.setItem(
-      this.storageKeys.USER_SETTINGS_KEY,
-      userFormSettings
-    ); 
-
-    // Triger calcualtion service here 
-    // result save ti storage
-  //   this.storageService.updatePrintList({
-  // })
+  onClearList(): void {
+    this.storageService.clearPrintList();
+    this.updateData();
   }
 }

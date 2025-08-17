@@ -61,6 +61,13 @@ export class StorageService {
   }
 
   /**
+   * 
+   */
+  clearPrintList(): void {
+    this.setItem(this.storageKeys.USER_PRINT_LIST_KEY, []);
+  }
+
+  /**
    *
    * @param newPrint
    */

@@ -11,11 +11,17 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <app-caclulation-form [userFormSetting] = "userFormSetting()" (currenUserFormSetting)="onCalculate($event)"/>
+      <app-caclulation-form
+        [userFormSetting]="userFormSetting()"
+        (currenUserFormSetting)="onCalculate($event)"
+      />
     </div>
     <div class="col-md-6">
-      <app-calculations-display-box />
+      <app-calculations-display-box
+        [printList]="printList()"
+        (clearList)="onClearList()"
+      />
     </div>
   </div>
 </main>
-<app-footer/>
+<app-footer />

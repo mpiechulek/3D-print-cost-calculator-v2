@@ -1,16 +1,26 @@
-<form
-  class="px-4 py-3 mb-5"
-  [formGroup]="calculationForm"
-  (ngSubmit)="onSubmit()"
->
+<form class="pb-3 mb-5" [formGroup]="calculationForm" (ngSubmit)="onSubmit()">
   <div class="mb-3">
     <label for="printName" class="form-label">Print/Model name</label>
-    <input type="text" class="form-control" name="printName" formControlName="printName" />
+    <input
+      type="text"
+      class="form-control"
+      name="printName"
+      id="printName"
+      aria-label="Print model name input"
+      formControlName="printName"
+    />
   </div>
 
   <div class="mb-3">
     <label for="currency" class="form-label">Currency</label>
-    <input type="text" class="form-control" name="currency" formControlName="currency" />
+    <input
+      type="text"
+      class="form-control"
+      name="currency"
+      id="currency"
+      aria-label="Currency input"
+      formControlName="currency"
+    />
   </div>
 
   <!-- Material cost -->
@@ -21,17 +31,26 @@
         <label for="materialName" class="form-label"
           >Type/Name of material</label
         >
-        <input type="text" class="form-control" name="materialName" formControlName="materialName" />
+        <input
+          type="text"
+          class="form-control"
+          name="materialName"
+          id="materialName"
+          aria-label="Type name of material input"
+          formControlName="materialName"
+        />
       </div>
 
       <div class="mb-3">
         <label for="materialPrice" class="form-label"
-          >Material price for 1000g</label
+          >Material spool price</label
         >
         <input
           type="number"
           class="form-control"
           name="materialPrice"
+          id="materialPrice"
+          aria-label="Material spool price input"
           min="0"
           formControlName="materialPrice"
         />
@@ -45,6 +64,8 @@
           type="number"
           class="form-control"
           name="materialWeight"
+          id="materialWeight"
+          aria-label="Filament spool weight [g] input"
           min="0"
           formControlName="materialWeight"
         />
@@ -58,6 +79,8 @@
           type="number"
           class="form-control"
           name="printWeight"
+          id="printWeight"
+          aria-label="3D print model weight in grams input"
           min="0"
           formControlName="printWeight"
         />
@@ -78,6 +101,8 @@
             type="number"
             class="form-control"
             name="powerConsumption"
+            id="powerConsumption"
+            aria-label="Power consumption in KWh's input"
             min="0"
             formControlName="powerConsumption"
           />
@@ -85,18 +110,42 @@
 
         <div class="col">
           <label for="kwhCost" class="form-label">Cost od 1KWh</label>
-          <input type="number" class="form-control" name="kwhCost" min="0"  formControlName="kwhCost"/>
+          <input
+            type="number"
+            class="form-control"
+            name="kwhCost"
+            id="kwhCost"
+            aria-label="Cost od 1KWh input"
+            min="0"
+            formControlName="kwhCost"
+          />
         </div>
       </div>
 
       <div class="row mb-3">
         <div class="col">
           <label for="printTimeH" class="form-label">Printing time [hh]</label>
-          <input type="number" class="form-control" name="printTimeH" min="0" formControlName="printTimeH" />
+          <input
+            type="number"
+            class="form-control"
+            name="printTimeH"
+            id="printTimeH"
+            aria-label="Printing time in hours input"
+            min="0"
+            formControlName="printTimeH"
+          />
         </div>
         <div class="col">
           <label for="printTimeM" class="form-label">Printing time [mm]</label>
-          <input type="number" class="form-control" name="printTimeM" min="0" formControlName="printTimeM"/>
+          <input
+            type="number"
+            class="form-control"
+            name="printTimeM"
+            id="printTimeM"
+            aria-label="Printing time in minutes input"
+            min="0"
+            formControlName="printTimeM"
+          />
         </div>
       </div>
     </div>
@@ -113,13 +162,23 @@
             type="number"
             class="form-control"
             name="laborHourCost"
+            id="laborHourCost"
+            aria-label="Labor hour cost input"
             min="0"
             formControlName="laborHourCost"
           />
         </div>
         <div class="col">
           <label for="laborHours" class="form-label">Labor hours</label>
-          <input type="number" class="form-control" name="laborHours" min="0" formControlName="laborHours"/>
+          <input
+            type="number"
+            class="form-control"
+            name="laborHours"
+            id="laborHours"
+            aria-label="Labor hours input"
+            min="0"
+            formControlName="laborHours"
+          />
         </div>
       </div>
       <div class="mb-3">
@@ -130,7 +189,10 @@
           type="number"
           class="form-control"
           name="machineDepreciation"
+          id="machineDepreciation"
+          aria-label="Labor hour cost"
           min="0"
+          aria-label="Machine depreciation per print/1h of work input"
           formControlName="machineDepreciation"
         />
       </div>
@@ -140,12 +202,19 @@
   <button
     type="submit"
     class="btn btn-primary btn-margin-right"
+    aria-label="Calculate button"
+    [attr.aria-disabled]="!calculationForm.valid"
     [disabled]="!calculationForm.valid"
   >
     Calculate
   </button>
 
-  <button type="submit" class="btn btn-danger" (click)="onClearForm()">
+  <button
+    type="submit"
+    class="btn btn-danger"
+    (click)="onClearForm()"
+    aria-label="Clear form button"
+  >
     Clear
   </button>
 </form>
