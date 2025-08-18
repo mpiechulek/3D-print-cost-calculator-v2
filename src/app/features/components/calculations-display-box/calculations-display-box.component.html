@@ -2,16 +2,22 @@
   <button type="button" class="btn btn-success btn-margin-right">
     Export to excell
   </button>
-  <button type="submit" class="btn btn-danger" (click)="clearList.emit()">Clear</button>
+  <button type="submit" class="btn btn-danger" (click)="clearList.emit()">
+    Clear
+  </button>
 </div>
 
 <div class="display-list">
-  @for(print of printList(); track print.printDate) { @let currency=
-  print.setting.currency;
+  @for(print of printList(); track print.printDate;let idx = $index) { @let
+  currency= print.setting.currency;
   <div class="card border-gray mb-3">
-    <div class="card-header">{{ print.setting.printName }}</div>
+    <div class="card-header">{{ idx + 1 }} - {{ print.setting.printName }}</div>
     <div class="card-body">
       <ul>
+        <li>
+          <div>Date:</div>
+          {{ print.printDate | date :'dd/MM/yyyy' }}
+        </li>
         <li>
           <div>Material:</div>
           {{ print.materialCost }} {{ currency }}

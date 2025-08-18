@@ -41,7 +41,7 @@ export class StorageService {
   /**
    *
    */
-  setKeysInLocalStorage(): void {   
+  setKeysInLocalStorage(): void {
     if (!this.getItem(this.storageKeys.USER_PRINT_LIST_KEY)) {
       this.setItem(this.storageKeys.USER_PRINT_LIST_KEY, []);
     }
@@ -55,13 +55,14 @@ export class StorageService {
    * @param newPrint
    */
   updatePrintList(newPrint: UserPrint): void {
-    const currentList = this.getItem<UserPrint[]>(this.storageKeys.USER_PRINT_LIST_KEY) || [];
-    const updatedList = [...currentList, newPrint];
+    const currentList =
+      this.getItem<UserPrint[]>(this.storageKeys.USER_PRINT_LIST_KEY) || [];
+    const updatedList = [newPrint, ...currentList];
     this.setItem(this.storageKeys.USER_PRINT_LIST_KEY, updatedList);
   }
 
   /**
-   * 
+   *
    */
   clearPrintList(): void {
     this.setItem(this.storageKeys.USER_PRINT_LIST_KEY, []);

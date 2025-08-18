@@ -4,8 +4,9 @@
   }
   .display-list {
     overflow-y: scroll;
-    max-height: 1030px;
-  
+    max-height: 990px;
+    display: flex;
+    flex-direction: column-reverse;
   }
   ul {
     li {

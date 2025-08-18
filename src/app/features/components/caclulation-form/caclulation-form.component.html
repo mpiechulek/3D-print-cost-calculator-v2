@@ -1,5 +1,23 @@
 <form class="pb-3 mb-5" [formGroup]="calculationForm" (ngSubmit)="onSubmit()">
-  <div class="mb-3">
+  <button
+    type="submit"
+    class="btn btn-primary btn-margin-right"
+    aria-label="Calculate button"
+    [attr.aria-disabled]="!calculationForm.valid"
+    [disabled]="!calculationForm.valid"
+  >
+    Calculate
+  </button>
+
+  <button
+    type="submit"
+    class="btn btn-danger"
+    (click)="onClearForm()"
+    aria-label="Clear form button"
+  >
+    Clear
+  </button>
+  <div class="mt-3">
     <label for="printName" class="form-label">Print/Model name</label>
     <input
       type="text"
@@ -7,6 +25,10 @@
       name="printName"
       id="printName"
       aria-label="Print model name input"
+      [class.is-invalid]="
+        calculationForm.get('printName')?.invalid &&
+        calculationForm.get('printName')?.touched
+      "
       formControlName="printName"
     />
   </div>
@@ -19,6 +41,10 @@
       name="currency"
       id="currency"
       aria-label="Currency input"
+      [class.is-invalid]="
+        calculationForm.get('currency')?.invalid &&
+        calculationForm.get('currency')?.touched
+      "
       formControlName="currency"
     />
   </div>
@@ -37,6 +63,10 @@
           name="materialName"
           id="materialName"
           aria-label="Type name of material input"
+          [class.is-invalid]="
+            calculationForm.get('materialName')?.invalid &&
+            calculationForm.get('materialName')?.touched
+          "
           formControlName="materialName"
         />
       </div>
@@ -51,6 +81,10 @@
           name="materialPrice"
           id="materialPrice"
           aria-label="Material spool price input"
+          [class.is-invalid]="
+            calculationForm.get('materialPrice')?.invalid &&
+            calculationForm.get('materialPrice')?.touched
+          "
           min="0"
           formControlName="materialPrice"
         />
@@ -66,6 +100,10 @@
           name="materialWeight"
           id="materialWeight"
           aria-label="Filament spool weight [g] input"
+          [class.is-invalid]="
+            calculationForm.get('materialWeight')?.invalid &&
+            calculationForm.get('materialWeight')?.touched
+          "
           min="0"
           formControlName="materialWeight"
         />
@@ -81,6 +119,10 @@
           name="printWeight"
           id="printWeight"
           aria-label="3D print model weight in grams input"
+          [class.is-invalid]="
+            calculationForm.get('printWeight')?.invalid &&
+            calculationForm.get('printWeight')?.touched
+          "
           min="0"
           formControlName="printWeight"
         />
@@ -93,7 +135,7 @@
   <div class="card mb-3">
     <div class="card-body">
       <div class="row mb-3">
-        <div class="col">
+        <div class="col align-items-space-between">
           <label for="powerConsumption" class="form-label"
             >Power consumption [KWh]</label
           >
@@ -103,12 +145,16 @@
             name="powerConsumption"
             id="powerConsumption"
             aria-label="Power consumption in KWh's input"
+            [class.is-invalid]="
+              calculationForm.get('powerConsumption')?.invalid &&
+              calculationForm.get('powerConsumption')?.touched
+            "
             min="0"
             formControlName="powerConsumption"
           />
         </div>
 
-        <div class="col">
+        <div class="col align-items-space-between">
           <label for="kwhCost" class="form-label">Cost od 1KWh</label>
           <input
             type="number"
@@ -116,6 +162,10 @@
             name="kwhCost"
             id="kwhCost"
             aria-label="Cost od 1KWh input"
+            [class.is-invalid]="
+              calculationForm.get('kwhCost')?.invalid &&
+              calculationForm.get('kwhCost')?.touched
+            "
             min="0"
             formControlName="kwhCost"
           />
@@ -131,6 +181,10 @@
             name="printTimeH"
             id="printTimeH"
             aria-label="Printing time in hours input"
+            [class.is-invalid]="
+              calculationForm.get('printTimeH')?.invalid &&
+              calculationForm.get('printTimeH')?.touched
+            "
             min="0"
             formControlName="printTimeH"
           />
@@ -143,6 +197,10 @@
             name="printTimeM"
             id="printTimeM"
             aria-label="Printing time in minutes input"
+            [class.is-invalid]="
+              calculationForm.get('laborHourCost')?.invalid &&
+              calculationForm.get('laborHourCost')?.touched
+            "
             min="0"
             formControlName="printTimeM"
           />
@@ -164,6 +222,10 @@
             name="laborHourCost"
             id="laborHourCost"
             aria-label="Labor hour cost input"
+            [class.is-invalid]="
+              calculationForm.get('laborHourCost')?.invalid &&
+              calculationForm.get('laborHourCost')?.touched
+            "
             min="0"
             formControlName="laborHourCost"
           />
@@ -176,45 +238,34 @@
             name="laborHours"
             id="laborHours"
             aria-label="Labor hours input"
+            [class.is-invalid]="
+              calculationForm.get('laborHours')?.invalid &&
+              calculationForm.get('laborHours')?.touched
+            "
             min="0"
             formControlName="laborHours"
           />
         </div>
       </div>
-      <div class="mb-3">
-        <label for="machineDepreciation" class="form-label"
-          >Machine Depreciation [per print/1h work]</label
-        >
-        <input
-          type="number"
-          class="form-control"
-          name="machineDepreciation"
-          id="machineDepreciation"
-          aria-label="Labor hour cost"
-          min="0"
-          aria-label="Machine depreciation per print/1h of work input"
-          formControlName="machineDepreciation"
-        />
-      </div>
     </div>
   </div>
-
-  <button
-    type="submit"
-    class="btn btn-primary btn-margin-right"
-    aria-label="Calculate button"
-    [attr.aria-disabled]="!calculationForm.valid"
-    [disabled]="!calculationForm.valid"
-  >
-    Calculate
-  </button>
-
-  <button
-    type="submit"
-    class="btn btn-danger"
-    (click)="onClearForm()"
-    aria-label="Clear form button"
-  >
-    Clear
-  </button>
+  <div class="mb-3">
+    <label for="machineDepreciation" class="form-label"
+      >Machine Depreciation of 1h work</label
+    >
+    <input
+      type="number"
+      class="form-control"
+      name="machineDepreciation"
+      id="machineDepreciation"
+      aria-label="Labor hour cost"
+      min="0"
+      [class.is-invalid]="
+        calculationForm.get('machineDepreciation')?.invalid &&
+        calculationForm.get('machineDepreciation')?.touched
+      "
+      aria-label="Machine depreciation of 1h work input"
+      formControlName="machineDepreciation"
+    />
+  </div>
 </form>
