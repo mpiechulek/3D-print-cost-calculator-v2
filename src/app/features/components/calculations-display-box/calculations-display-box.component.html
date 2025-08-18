@@ -1,5 +1,5 @@
 <div class="d-flex mb-3 space-between">
-  <button type="button" class="btn btn-success btn-margin-right">
+  <button type="button" class="btn btn-success btn-margin-right" (click)="exportToExcel.emit()">
     Export to excell
   </button>
   <button type="submit" class="btn btn-danger" (click)="clearList.emit()">
@@ -9,9 +9,9 @@
 
 <div class="display-list">
   @for(print of printList(); track print.printDate;let idx = $index) { @let
-  currency= print.setting.currency;
+  currency= print.currency;
   <div class="card border-gray mb-3">
-    <div class="card-header">{{ idx + 1 }} - {{ print.setting.printName }}</div>
+    <div class="card-header">{{ idx + 1 }} - {{ print.printName }}</div>
     <div class="card-body">
       <ul>
         <li>
@@ -42,7 +42,7 @@
       </ul>
     </div>
     <div class="card-footer bg-transparent">
-      {{ print.setting.materialName }}
+      {{ print.materialName }}
     </div>
   </div>
   }

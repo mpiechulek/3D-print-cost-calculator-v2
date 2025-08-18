@@ -12,6 +12,7 @@ import {
 import { defaultFormData } from 'app/shared/data/default-form-data';
 import { CalculationService } from 'app/shared/services/calculation.service';
 import { CommonModule } from '@angular/common';
+import { ExportToExcelService } from 'app/shared/services/export-to-excel.service';
 
 @Component({
   standalone: true,
@@ -29,6 +30,7 @@ import { CommonModule } from '@angular/common';
 export class MainPageComponent {
   storageService = inject(StorageService);
   calculationService = inject(CalculationService);
+  exportToExcelService = inject(ExportToExcelService);
   readonly storageKeys = StorageKeys;
   protected printList = signal<UserPrint[]>([]);
   protected userFormSetting = signal<UserFormSettings>(defaultFormData);
@@ -75,5 +77,12 @@ export class MainPageComponent {
   onClearList(): void {
     this.storageService.clearPrintList();
     this.updateData();
+  }
+
+  /**
+   * Exports the current print list to an Excel file.
+   */
+  exportToExcel(): void {
+    this.exportToExcelService.generateExcel(this.printList(), 'Print List');
   }
 }

@@ -11,4 +11,5 @@ import { UserPrint } from 'app/shared/models/storage-data.model';
 export class CalculationsDisplayBoxComponent {
   readonly printList = input<UserPrint[]>([]);
   readonly clearList = output();
+  readonly exportToExcel = output();
 }

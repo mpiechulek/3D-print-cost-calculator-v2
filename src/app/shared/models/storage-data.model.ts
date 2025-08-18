@@ -14,8 +14,7 @@ export interface UserFormSettings {
   machineDepreciation: number;
 }
 
-export interface UserPrint {
-  setting: UserFormSettings;
+export interface UserPrint extends UserFormSettings {  
   totalCost: number;
   electrictyCost: number;
   materialCost: number;
