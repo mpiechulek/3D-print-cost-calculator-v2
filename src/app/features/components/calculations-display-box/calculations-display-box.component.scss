@@ -1,0 +1,19 @@
+:host {
+  .btn-margin-right {
+    margin-right: 10px;
+  }
+  .display-list {
+    overflow-y: scroll;
+    max-height: 990px;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  ul {
+    li {
+      display: flex;
+      div {
+        width: 100px;
+      }
+    }
+  }
+}

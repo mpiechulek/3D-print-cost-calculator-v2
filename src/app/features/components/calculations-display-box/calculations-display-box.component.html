@@ -1,0 +1,49 @@
+<div class="d-flex mb-3 space-between">
+  <button type="button" class="btn btn-success btn-margin-right" (click)="exportToExcel.emit()">
+    Export to excell
+  </button>
+  <button type="submit" class="btn btn-danger" (click)="clearList.emit()">
+    Clear
+  </button>
+</div>
+
+<div class="display-list">
+  @for(print of printList(); track print.printDate;let idx = $index) { @let
+  currency= print.currency;
+  <div class="card border-gray mb-3">
+    <div class="card-header">{{ idx + 1 }} - {{ print.printName }}</div>
+    <div class="card-body">
+      <ul>
+        <li>
+          <div>Date:</div>
+          {{ print.printDate | date :'dd/MM/yyyy' }}
+        </li>
+        <li>
+          <div>Material:</div>
+          {{ print.materialCost }} {{ currency }}
+        </li>
+        <li>
+          <div>Electricity:</div>
+          {{ print.electrictyCost }} {{ currency }}
+        </li>
+        <li>
+          <div>Labor:</div>
+          {{ print.laborCost }} {{ currency }}
+        </li>
+        <li>
+          <div>Depreciation:</div>
+          {{ print.depreciationCost }} {{ currency }}
+        </li>
+
+        <li>
+          <div><b> Total:</b></div>
+          <b> {{ print.totalCost }} {{ currency }}</b>
+        </li>
+      </ul>
+    </div>
+    <div class="card-footer bg-transparent">
+      {{ print.materialName }}
+    </div>
+  </div>
+  }
+</div>

@@ -1,0 +1,13 @@
+:host {
+  .btn-margin-right {
+    margin-right: 10px;
+  }
+  .is-invalid {
+    border: 1px solid red;
+  }
+  .col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

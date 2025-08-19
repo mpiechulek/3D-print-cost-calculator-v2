@@ -1,0 +1,22 @@
+.footer {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  height: auto;
+  width: 100%;
+
+  .container {
+    display: flex;   
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%; 
+
+   div > * {
+     margin-right: 20px;
+     &:last-child {
+      margin-right: 0;
+     }
+   }   
+  }
+}
