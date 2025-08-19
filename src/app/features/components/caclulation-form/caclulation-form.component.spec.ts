@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CaclulationFormComponent } from './caclulation-form.component';
 
 describe('CaclulationFormComponent', () => {
@@ -8,12 +7,11 @@ describe('CaclulationFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CaclulationFormComponent]
-    })
-    .compileComponents();
+      imports: [CaclulationFormComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CaclulationFormComponent);
-    component = fixture.componentInstance;
+    component = fixture.componentInstance;    
     fixture.detectChanges();
   });
 

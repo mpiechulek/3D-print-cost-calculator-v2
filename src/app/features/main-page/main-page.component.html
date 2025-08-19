@@ -13,13 +13,13 @@
     <div class="col-md-6">
       <app-caclulation-form
         [userFormSetting]="userFormSetting()"
-        (currenUserFormSetting)="onCalculate($event)"
+        (currenUserFormSetting)="calculate($event)"
       />
     </div>
     <div class="col-md-6">
       <app-calculations-display-box
         [printList]="printList()"
-        (clearList)="onClearList()"
+        (clearList)="clearList()"
         (exportToExcel)="exportToExcel()"
       />
     </div>

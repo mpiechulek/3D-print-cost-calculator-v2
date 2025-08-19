@@ -8,7 +8,7 @@
 </div>
 
 <div class="display-list">
-  @for(print of printList(); track print.printDate;let idx = $index) { @let
+  @for(print of printList; track print.printDate;let idx = $index) { @let
   currency= print.currency;
   <div class="card border-gray mb-3">
     <div class="card-header">{{ idx + 1 }} - {{ print.printName }}</div>

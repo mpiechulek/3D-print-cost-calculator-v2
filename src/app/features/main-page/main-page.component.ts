@@ -1,18 +1,15 @@
-import { Component, effect, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FooterComponent } from '../components/footer/footer.component';
 import { CaclulationFormComponent } from '../components/caclulation-form/caclulation-form.component';
 import { CalculationsDisplayBoxComponent } from '../components/calculations-display-box/calculations-display-box.component';
 import { HeaderComponent } from '../components/header/header.component';
-import { StorageService } from 'app/shared/services/sorage.service';
-import { StorageKeys } from 'app/shared/models/storage-keys.enum';
-import {
-  UserFormSettings,
-  UserPrint,
-} from 'app/shared/models/storage-data.model';
-import { defaultFormData } from 'app/shared/data/default-form-data';
-import { CalculationService } from 'app/shared/services/calculation.service';
+import { StorageService } from '@shared/services/sorage.service';
+import { StorageKeys } from '@shared/models/storage-keys.enum';
+import { UserFormSettings, UserPrint } from '@shared/models/storage-data.model';
+import { defaultFormData } from '@shared/data/default-form-data';
+import { CalculationService } from '@shared/services/calculation.service';
 import { CommonModule } from '@angular/common';
-import { ExportToExcelService } from 'app/shared/services/export-to-excel.service';
+import { ExportToExcelService } from '@shared/services/export-to-excel.service';
 
 @Component({
   standalone: true,
@@ -32,34 +29,36 @@ export class MainPageComponent {
   calculationService = inject(CalculationService);
   exportToExcelService = inject(ExportToExcelService);
   readonly storageKeys = StorageKeys;
-  protected printList = signal<UserPrint[]>([]);
-  protected userFormSetting = signal<UserFormSettings>(defaultFormData);
+   printList = signal<UserPrint[]>([]);
+   userFormSetting = signal<UserFormSettings>(defaultFormData);
 
   constructor() {
     this.storageService.setKeysInLocalStorage();
-    this.updateData();
+    this.getUpdateDataFromStorage();
   }
 
   /**
    *
    * @param userFormSettings
    */
-  onCalculate(userFormSettings: UserFormSettings): void {
+  calculate(userFormSettings: UserFormSettings): void {
+
     this.storageService.setItem(
       this.storageKeys.USER_SETTINGS_KEY,
       userFormSettings
     );
+
     this.storageService.updatePrintList(
       this.calculationService.calculateCost(userFormSettings)
     );
 
-    this.updateData();
+    this.getUpdateDataFromStorage();
   }
 
   /**
    * Updates the print list and user form settings from local storage.
    */
-  updateData(): void {
+  getUpdateDataFromStorage(): void {
     const userSettings = this.storageService.getItem<UserFormSettings>(
       this.storageKeys.USER_SETTINGS_KEY
     );
@@ -74,9 +73,9 @@ export class MainPageComponent {
   /**
    *
    */
-  onClearList(): void {
+  clearList(): void {
     this.storageService.clearPrintList();
-    this.updateData();
+    this.getUpdateDataFromStorage();
   }
 
   /**

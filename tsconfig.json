@@ -19,7 +19,8 @@
     "module": "ES2022",
     "baseUrl": "./src",
     "paths": {
-      // "@/*": ["src/*"],
+      "@shared/*": ["app/shared/*"],
+      "@features/*": ["app/features/*"]
     }
   },
   "exclude": ["cypress/**/*.ts", "cypress.config.ts"],

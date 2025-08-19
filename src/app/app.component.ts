@@ -7,6 +7,5 @@ import { MainPageComponent } from './features/main-page/main-page.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
-  title = '3D-print-calc-v2';
+export class AppComponent {  
 }

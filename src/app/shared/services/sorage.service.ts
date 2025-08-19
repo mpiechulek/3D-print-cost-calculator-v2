@@ -6,7 +6,7 @@ import { UserFormSettings, UserPrint } from '../models/storage-data.model';
   providedIn: 'root',
 })
 export class StorageService {
-  private storageKeys = StorageKeys;
+  readonly storageKeys = StorageKeys;
 
   constructor() {}
   /**

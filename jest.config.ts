@@ -8,14 +8,13 @@ const config: Config = {
     '^.+\\.ts$': 'ts-jest', // Only transform .ts files
   },
   moduleFileExtensions: ['ts', 'html', 'js', 'json'],
-  moduleNameMapper: {    
-  },
-  // transform: {
-  //   '^.+\\.(ts|js|html)$': 'jest-preset-angular',
-  // },
   transformIgnorePatterns: [
     '/node_modules/(?!flat)/', // Exclude modules except 'flat' from transformation
   ],
+  moduleNameMapper: {
+    '^@shared/(.*)$': '<rootDir>/src/app/shared/$1',
+    '^@features/(.*)$': '<rootDir>/src/app/features/$1',
+  },
   collectCoverage: true,
   coverageDirectory: 'coverage',
   coverageReporters: ['json', 'lcov', 'clover', 'text'],
