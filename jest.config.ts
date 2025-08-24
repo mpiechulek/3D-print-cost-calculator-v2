@@ -18,6 +18,7 @@ const config: Config = {
   collectCoverage: true,
   coverageDirectory: 'coverage',
   coverageReporters: ['json', 'lcov', 'clover', 'text'],
+  coveragePathIgnorePatterns: ['/node_modules/', '/dist/', '/coverage/'],
   coverageThreshold: {
     global: {
       branches: 90,

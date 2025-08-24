@@ -2,10 +2,8 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
-  Input,
-  input,
-  Output,
-  output,
+  Input,  
+  Output,  
 } from '@angular/core';
 import { UserPrint } from '@shared/models/storage-data.model';
 

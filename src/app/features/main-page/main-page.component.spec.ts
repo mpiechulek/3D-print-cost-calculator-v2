@@ -1,11 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MainPageComponent } from './main-page.component';
-import { StorageService } from '@shared/services/sorage.service';
+import { StorageService } from '@shared/services/storage.service';
 import { CalculationService } from '@shared/services/calculation.service';
 import { StorageKeys } from '@shared/models/storage-keys.enum';
-import { UserFormSettings, UserPrint } from '@shared/models/storage-data.model';
 import { ExportToExcelService } from '@shared/services/export-to-excel.service';
+import {
+  userFormSettingsMock,
+  userPrintCalculationMock,
+} from '@shared/data/test-mock-data';
 
 describe('MainPageComponent', () => {
   let component: MainPageComponent;
@@ -13,42 +16,6 @@ describe('MainPageComponent', () => {
   let storageServiceMock: jest.Mocked<StorageService>;
   let calculationServiceMock: jest.Mocked<CalculationService>;
   let exportToExcelServiceMock: jest.Mocked<ExportToExcelService>;
-  const userFormSettingsMock: UserFormSettings = {
-    printName: 'ABC',
-    currency: 'XX',
-    materialName: 'PLA',
-    materialWeight: 1000,
-    materialPrice: 50,
-    printWeight: 25,
-    powerConsumption: 0.125,
-    kwhCost: 0.8,
-    printTimeH: 2,
-    printTimeM: 45,
-    laborHourCost: 32,
-    laborHours: 1,
-    machineDepreciation: 1,
-  };
-  const userPrintCalculationMock: UserPrint = {
-    currency: 'XX',
-    depreciationCost: 2.75,
-    electrictyCost: 0.28,
-    kwhCost: 0.8,
-    laborCost: 32,
-    laborHourCost: 32,
-    laborHours: 1,
-    machineDepreciation: 1,
-    materialCost: 1.25,
-    materialName: 'PLA',
-    materialPrice: 50,
-    materialWeight: 1000,
-    powerConsumption: 0.125,
-    printDate: new Date(1988, 11, 17, 0, 0, 0),
-    printName: 'ABC',
-    printTimeH: 2,
-    printTimeM: 45,
-    printWeight: 25,
-    totalCost: 36.28,
-  };
 
   beforeEach(async () => {
     storageServiceMock = {
@@ -85,6 +52,10 @@ describe('MainPageComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     // Reset mocks before each test
+    jest.clearAllMocks();
+  });
+
+  afterEach(() => {
     jest.clearAllMocks();
   });
 
@@ -142,13 +113,18 @@ describe('MainPageComponent', () => {
   });
 
   it('should call exportToExcel() and exportToExcelService.generateExcel', () => {
-    jest.spyOn(component, 'exportToExcel');   
-    jest.spyOn(component, 'printList').mockReturnValue([userPrintCalculationMock]);
+    jest.spyOn(component, 'exportToExcel');
+    jest
+      .spyOn(component, 'printList')
+      .mockReturnValue([userPrintCalculationMock]);
     jest
       .spyOn(component, 'printList')
       .mockReturnValue([userPrintCalculationMock]);
     component.exportToExcel();
     expect(component.exportToExcel).toHaveBeenCalled();
-    expect(exportToExcelServiceMock.generateExcel).toHaveBeenCalledWith([userPrintCalculationMock], 'Print List');  
+    expect(exportToExcelServiceMock.generateExcel).toHaveBeenCalledWith(
+      [userPrintCalculationMock],
+      'Print List'
+    );
   });
 });

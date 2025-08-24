@@ -15,7 +15,7 @@ describe('CaclulationFormComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create CaclulationFormComponent', () => {
     expect(component).toBeTruthy();
   });
 });

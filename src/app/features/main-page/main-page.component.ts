@@ -3,7 +3,7 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { CaclulationFormComponent } from '../components/caclulation-form/caclulation-form.component';
 import { CalculationsDisplayBoxComponent } from '../components/calculations-display-box/calculations-display-box.component';
 import { HeaderComponent } from '../components/header/header.component';
-import { StorageService } from '@shared/services/sorage.service';
+import { StorageService } from '@shared/services/storage.service';
 import { StorageKeys } from '@shared/models/storage-keys.enum';
 import { UserFormSettings, UserPrint } from '@shared/models/storage-data.model';
 import { defaultFormData } from '@shared/data/default-form-data';

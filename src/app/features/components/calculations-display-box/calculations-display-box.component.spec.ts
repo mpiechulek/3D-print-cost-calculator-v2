@@ -17,7 +17,7 @@ describe('CalculationsDisplayBoxComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create CalculationsDisplayBoxComponent', () => {
     expect(component).toBeTruthy();
   });
 });
